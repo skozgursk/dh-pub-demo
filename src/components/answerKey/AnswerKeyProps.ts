@@ -1,0 +1,1 @@
+export default interface AnswerKeyProps extends Partial<HTMLElement> {}

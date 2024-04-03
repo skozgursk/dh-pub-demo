@@ -1,0 +1,1 @@
+export default interface QuestionCardProps extends Partial<HTMLElement> {}
