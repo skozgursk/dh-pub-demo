@@ -1,0 +1,31 @@
+[
+    {
+        "chapter": "Türkçe",
+        "order": 7,
+        "subText": "Şair, şiirlerinde hava alacak boşluk bırakmıyor, her şeyi söylüyor. Okuyucunun adına da kendisi konuşuyor. Bunun için dizleri hayalinizi perdeliyor, soluğunuzu kesiyor, sizi boğuyor.",
+        "question": "Bu parçada geçen “hava alacak boşluk bırakmamak” sözüyle anlatılmak istenen aşağıdakilerden hangisidir?",
+        "answers": [
+            {
+                "order" : 1,
+                "text" : "<b>Görgüsüzce</b> davranmasaydın, seni böyle dışlamazdık."
+            },
+            {
+                "order" : 2,
+                "text" : " Ekip arkadaşlarıyla ters düşmeyen, <b>uyumlu</b> bir teknisyendi"
+            },
+            {
+                "order" : 3,
+                "text" : "Her şeyin kendisinin olmasını isteyen <b>açgözlü</b> biriydi."
+            },
+            {
+                "order" : 4,
+                "text" : "Bir dediği bir dediğini tutmayan <b>tutarsız</b> bir gazeteciydi."
+            },
+            {
+                "order" : 5,
+                "text" : "Ağzında bakla ıslanmayan <b>boşboğaz</b> adamın tekiydi o."
+            }
+        ],
+        "answer": 4
+    }
+]
