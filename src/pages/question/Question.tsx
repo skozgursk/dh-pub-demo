@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useQuery } from "react-query";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight, Power } from "../../assets";
 import { AnswerKey, Loading, QuestionCard, SafeCloseDialog, Toggle } from "../../components";
 import { QuestionModel } from "../../models";
@@ -10,6 +10,7 @@ import { createPortal } from "react-dom";
 
 export const Question = () => {
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const { data: questions, isLoading } = useQuery<Array<QuestionModel>, Error>('questions', getQuestions);
 
@@ -24,7 +25,7 @@ export const Question = () => {
             title="Ayrılmak istediğine emin misin?"
             text="Testi yarıda bırakıyorsun. İstediğin zaman kaldığın sorudan devam edebilirsin."
             actions={{ submit: 'Testten Çık', cancel: 'Vazgeç' }}
-            onSubmit={() => { console.log('ff') }}
+            onSubmit={() => { navigate('/') }}
         />, document.body)}
 
         <div className={styles.__header}>
