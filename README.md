@@ -10,8 +10,11 @@ Only Desktop Screen Covered, Not responsive design.\
 Test cases not covered.\
 
 ![before answered](https://github.com/skozgursk/dh-pub-demo/blob/master/public/screenshots/s1.png)
+Before Answered.\
 ![wrong answer](https://github.com/skozgursk/dh-pub-demo/blob/master/public/screenshots/s2.png)
+Wrong Answer.\
 ![correct answer](https://github.com/skozgursk/dh-pub-demo/blob/master/public/screenshots/s3.png)
+Correct Answer.\
 
 
 
