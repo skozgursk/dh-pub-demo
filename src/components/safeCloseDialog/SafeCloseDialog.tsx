@@ -1,10 +1,10 @@
-import { forwardRef, useImperativeHandle, useRef } from "react";
+import { forwardRef, memo, useImperativeHandle, useRef } from "react";
 import { AlertCircle, Close } from "../../assets";
-import IconButton from "../iconButton/IconButton";
+import { IconButton } from "../";
 import SafeCloseDialogProps from "./SafeCloseDialogProps";
 import styles from "./safeCloseDialog.module.scss";
 
-export const SafeCloseDialog = forwardRef<HTMLDialogElement, SafeCloseDialogProps>(({ title, text, actions, onSubmit }, ref) => {
+export const SafeCloseDialog = memo(forwardRef<HTMLDialogElement, SafeCloseDialogProps>(({ title, text, actions, onSubmit }, ref) => {
     const handleClose = () => {
         localRef.current?.close()
     }
@@ -25,6 +25,4 @@ export const SafeCloseDialog = forwardRef<HTMLDialogElement, SafeCloseDialogProp
             </div>
         </div>
     </dialog>
-});
-
-export default SafeCloseDialog
+}));

@@ -1,13 +1,12 @@
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 import LoadingProps from "./LoadingProps";
 import styles from "./loading.module.scss";
 
-export const Loading = forwardRef<HTMLDialogElement, LoadingProps>(({ isOpen }, ref) => {
+export const Loading = memo(forwardRef<HTMLDialogElement, LoadingProps>(({ isOpen }, ref) => {
+    console.log('render')
     return <dialog {...({ open: isOpen })} className={styles.__} ref={ref}>
         <div className={styles.circle}>
             <div className={styles.wave}></div>
         </div>
     </dialog>
-});
-
-export default Loading
+}));

@@ -1,14 +1,13 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IconButton } from "../";
 import { Alert, Brush, CheckCirclePassive, ZoomIn, ZoomOut } from "../../assets";
 import { AnswerType, StateModel } from "../../models";
 import { add } from "../../store/quiz/quizSlice";
-import IconButton from "../iconButton/IconButton";
-import Loading from "../loading/Loading";
 import QuestionCardProps, { AnswerStatus } from "./QuestionCardProps";
 import styles from "./questionCard.module.scss";
 
-export const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(({ question }, ref) => {
+export const QuestionCard = memo(forwardRef<HTMLDivElement, QuestionCardProps>(({ question }, ref) => {
     const [answerStatus, setAnswerStatus] = useState(AnswerStatus.None)
     const answers = useSelector((state: StateModel) => state?.quiz?.value)
 
@@ -44,7 +43,7 @@ export const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(({ que
         }
     }, [question])
 
-    const rightAnswerCalculater = (order: AnswerType) => {
+    const rightAnswerCalculator = (order: AnswerType) => {
         const userAnswer = answers.find(item => item.order === question.order)?.userAnswer
 
         if (order === userAnswer && answerStatus === AnswerStatus.Correct) {
@@ -60,32 +59,28 @@ export const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(({ que
         return ''
     }
 
-    return <div className={styles.__} ref={ref}>
-        {question ? <>
-            <div className={styles.__header}>
-                <div className={styles.__header__tag}>Soru: {question.chapter} #{question.order}</div>
-                <div className={styles.__header__actions}>
-                    <IconButton onClick={handleClear} icon={Brush} ariaLabel="Temizle" />
-                    <IconButton onClick={handleZoomIn} icon={ZoomIn} ariaLabel="Yaklaş" />
-                    <IconButton onClick={handleZoomOut} icon={ZoomOut} ariaLabel="Uzaklaş" />
-                    <IconButton onClick={handleReport} icon={Alert} ariaLabel="Raporla" />
+    return <div className={styles.__} ref={ref}>asd
+        <div className={styles.__header}>
+            <div className={styles.__header__tag}>Soru: {question.chapter} #{question.order}</div>
+            <div className={styles.__header__actions}>
+                <IconButton onClick={handleClear} icon={Brush} ariaLabel="Temizle" />
+                <IconButton onClick={handleZoomIn} icon={ZoomIn} ariaLabel="Yaklaş" />
+                <IconButton onClick={handleZoomOut} icon={ZoomOut} ariaLabel="Uzaklaş" />
+                <IconButton onClick={handleReport} icon={Alert} ariaLabel="Raporla" />
+            </div>
+        </div>
+        <p className={styles.__subText}>{`"${question.subText}"`}</p>
+        <p className={styles.__question}><b>{question.question}</b></p>
+        <div className={styles.__answer__container}>
+            {question.answers.map(item => {
+                return <div key={`question-${question.order}-answer-${item.order}`} className={`${styles.__answer} ${rightAnswerCalculator(item.order)}`}>
+                    <CheckCirclePassive className={styles.__answer__} />
+                    <p className={styles.__answer__option}>{`${item.order})`}</p>
+                    <p dangerouslySetInnerHTML={{ __html: item.text }}></p>
+                    <div className={styles.__answer__actions}><button onClick={() => { handleAnswer(item.order) }}>Cevapla</button></div>
                 </div>
-            </div>
-            <p className={styles.__subText}>{`"${question.subText}"`}</p>
-            <p className={styles.__question}><b>{question.question}</b></p>
-            <div className={styles.__answer__container}>
-                {question.answers.map(item => {
-                    return <div key={`question-${question.order}-answer-${item.order}`} className={`${styles.__answer} ${rightAnswerCalculater(item.order)}`}>
-                        <CheckCirclePassive className={styles.__answer__} />
-                        <p className={styles.__answer__option}>{`${item.order})`}</p>
-                        <p dangerouslySetInnerHTML={{ __html: item.text }}></p>
-                        <div className={styles.__answer__actions}><button onClick={() => { handleAnswer(item.order) }}>Cevapla</button></div>
-                    </div>
-                })}
-            </div>
-        </> : <Loading isOpen={true} />}
+            })}
+        </div>
 
     </div>
-});
-
-export default QuestionCard
+}));

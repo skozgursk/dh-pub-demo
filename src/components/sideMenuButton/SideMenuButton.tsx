@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import IconButton from "../iconButton/IconButton";
+import { IconButton } from "../";
 import IconButtonProps from "../iconButton/IconButtonProps";
 import SideMenuButtonProps from "./SideMenuButtonProps";
 import styles from "./sideMenuButton.module.scss";

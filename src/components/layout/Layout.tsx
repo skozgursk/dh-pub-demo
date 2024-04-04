@@ -1,15 +1,13 @@
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 import { Outlet } from "react-router-dom";
-import SideMenu from "../sideMenu/SideMenu";
+import { SideMenu } from "../";
 import styles from "./layout.module.scss";
 
-export const Layout = forwardRef<HTMLElement>((props, ref) => {
+export const Layout = memo(forwardRef<HTMLElement>((props, ref) => {
     return <main className={styles.__} ref={ref}>
-        <SideMenu/>
+        <SideMenu />
         <div className={styles.__container}>
             <Outlet />
         </div>
     </main>
-});
-
-export default Layout
+}))

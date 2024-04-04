@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Ders } from "../../assets";
@@ -7,7 +7,7 @@ import { AnswerType } from "../../models/answerType";
 import AnswerKeyProps from "./AnswerKeyProps";
 import styles from "./answerKey.module.scss";
 
-export const AnswerKey = forwardRef<HTMLDivElement, AnswerKeyProps>(({ questionCount, title }, ref) => {
+export const AnswerKey = memo(forwardRef<HTMLDivElement, AnswerKeyProps>(({ questionCount, title }, ref) => {
     const answers = useSelector((state: StateModel) => state?.quiz?.value)
     const { id } = useParams()
 
@@ -47,6 +47,4 @@ export const AnswerKey = forwardRef<HTMLDivElement, AnswerKeyProps>(({ questionC
         </div>
 
     </div>
-});
-
-export default AnswerKey
+}));

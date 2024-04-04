@@ -12,5 +12,3 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>((props,
         {<props.icon />}
     </button>
 });
-
-export default IconButton
