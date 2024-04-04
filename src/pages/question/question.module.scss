@@ -1,0 +1,31 @@
+.__ {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+
+    &header {
+        display: flex;
+        h1 {
+            font-size: 24px;
+        }
+    }
+
+    &content {
+        display: flex;
+    }
+
+    &question {
+        flex: 1;
+        padding-right: 24px;
+        display: flex;
+        flex-direction: column;
+        &__actions {
+            height: 50px;
+            margin-top: 20px;
+        }
+    }
+
+    &answers {
+        width: 352px;
+    }
+}

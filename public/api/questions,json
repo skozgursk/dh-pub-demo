@@ -6,26 +6,26 @@
         "question": "Bu parçada geçen “hava alacak boşluk bırakmamak” sözüyle anlatılmak istenen aşağıdakilerden hangisidir?",
         "answers": [
             {
-                "order" : 1,
+                "order" : "A",
                 "text" : "<b>Görgüsüzce</b> davranmasaydın, seni böyle dışlamazdık."
             },
             {
-                "order" : 2,
+                "order" : "B",
                 "text" : " Ekip arkadaşlarıyla ters düşmeyen, <b>uyumlu</b> bir teknisyendi"
             },
             {
-                "order" : 3,
+                "order" : "C",
                 "text" : "Her şeyin kendisinin olmasını isteyen <b>açgözlü</b> biriydi."
             },
             {
-                "order" : 4,
+                "order" : "D",
                 "text" : "Bir dediği bir dediğini tutmayan <b>tutarsız</b> bir gazeteciydi."
             },
             {
-                "order" : 5,
+                "order" : "F",
                 "text" : "Ağzında bakla ıslanmayan <b>boşboğaz</b> adamın tekiydi o."
             }
         ],
-        "answer": 4
+        "answer": "B"
     }
 ]

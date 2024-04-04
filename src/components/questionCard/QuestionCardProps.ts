@@ -1,1 +1,5 @@
-export default interface QuestionCardProps extends Partial<HTMLElement> {}
+import { QuestionModel } from "../../models";
+
+export default interface QuestionCardProps {
+    question?: QuestionModel
+}
