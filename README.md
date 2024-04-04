@@ -4,10 +4,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Project Information
 
-Scss with BEM methods used for the project,
-No UI Framework used
-Only Desktop Screen Covered, Not responsive design.
-Test cases not covered
+Scss with BEM methods used for the project.\
+No UI Framework used.\
+Only Desktop Screen Covered, Not responsive design.\
+Test cases not covered.\
+
+![before answered](https://github.com/skozgursk/dh-pub-demo/blob/master/public/screenshots/s1.png)
+![wrong answer](https://github.com/skozgursk/dh-pub-demo/blob/master/public/screenshots/s2.png)
+![correct answer](https://github.com/skozgursk/dh-pub-demo/blob/master/public/screenshots/s3.png)
 
 
 
