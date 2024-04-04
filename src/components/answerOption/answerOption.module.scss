@@ -1,1 +1,17 @@
-.__{}
+.__ {
+    &option {
+        border-radius: 50%;
+        border: 1px solid #4993B1;
+        color: #4993B1;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        box-sizing: border-box;
+
+        &--correct {
+            background-color: #03A9F1;
+            color: #ffffff;
+        }
+    }
+}

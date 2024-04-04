@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
-const storeAPI = 'http://localhost:5000/api'
+const storeAPI = '/api'
 
 export const apiInstance: AxiosInstance = axios.create({
     baseURL: storeAPI
@@ -11,7 +11,6 @@ apiInstance.interceptors.request.use(
         return config
     },
     (error) => {
-        console.error('Request error', error)
         throw error
     }
 )

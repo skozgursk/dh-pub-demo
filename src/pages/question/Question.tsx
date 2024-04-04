@@ -6,27 +6,27 @@ import { AnswerKey, Loading, QuestionCard, SafeCloseDialog, Toggle } from "../..
 import { QuestionModel } from "../../models";
 import { getQuestions } from "../../utils";
 import styles from "./question.module.scss";
+import { createPortal } from "react-dom";
 
 export const Question = () => {
     const { id } = useParams()
 
-    const { data: questions, isLoading, error } = useQuery<Array<QuestionModel>, Error>('questions', getQuestions);
+    const { data: questions, isLoading } = useQuery<Array<QuestionModel>, Error>('questions', getQuestions);
 
     const [isAnswersShown, setIsAnswersShown] = useState(true)
 
     const dialogRef = useRef<HTMLDialogElement>(null)
 
     return <div className={styles.__}>
-        {isLoading.toString()}
-        {error?.toString()}
         <Loading isOpen={isLoading} />
-        <SafeCloseDialog
+        {createPortal(<SafeCloseDialog
             ref={dialogRef}
             title="Ayrılmak istediğine emin misin?"
             text="Testi yarıda bırakıyorsun. İstediğin zaman kaldığın sorudan devam edebilirsin."
             actions={{ submit: 'Testten Çık', cancel: 'Vazgeç' }}
             onSubmit={() => { console.log('ff') }}
-        />
+        />, document.body)}
+
         <div className={styles.__header}>
             <div className={styles.__header__question}>
                 <ArrowLeft />

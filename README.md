@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Information
+
+Scss with BEM methods used for the project,
+No UI Framework used
+Only Desktop Screen Covered, Not responsive design.
+Test cases not covered
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -62,7 +62,7 @@ export const QuestionCard = memo(forwardRef<HTMLDivElement, QuestionCardProps>((
         return ''
     }
 
-    return <div className={styles.__} ref={ref}>asd
+    return <div className={styles.__} ref={ref}>
         <div className={styles.__header}>
             <div className={styles.__header__tag}>Soru: {question.chapter} #{question.order}</div>
             <div className={styles.__header__actions}>

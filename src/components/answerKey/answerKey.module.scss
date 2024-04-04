@@ -17,7 +17,7 @@
         height: 60px;
         padding: 5px 8px;
         box-sizing: border-box;
-        
+
 
         &--active {
             background-color: #03A9F180;
@@ -35,25 +35,11 @@
     }
 
     &option {
-        border-radius: 50%;
-        border: 1px solid #4993B1;
-        color: #4993B1;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        line-height: 40px;
-        box-sizing: border-box;
-
         &__container {
             display: flex;
             width: 240px;
             justify-content: space-between;
             align-items: center;
-        }
-
-        &--correct {
-            background-color: #03A9F1;
-            color: #ffffff;
         }
     }
 
