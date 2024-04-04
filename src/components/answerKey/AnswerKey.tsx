@@ -1,6 +1,7 @@
 import { forwardRef, memo } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { AnswerOption } from "../";
 import { Ders } from "../../assets";
 import { StateModel } from "../../models";
 import { AnswerType } from "../../models/answerType";
@@ -10,16 +11,6 @@ import styles from "./answerKey.module.scss";
 export const AnswerKey = memo(forwardRef<HTMLDivElement, AnswerKeyProps>(({ questionCount, title }, ref) => {
     const answers = useSelector((state: StateModel) => state?.quiz?.value)
     const { id } = useParams()
-
-    const correctAnswerCheck = (option: AnswerType, index: number) => {
-        const answer = answers.find(item => item.order === (index + 1))
-
-        if (answer && option === answer.correctAnswer) {
-            return styles['__option--correct']
-        }
-
-        return ''
-    }
 
     return <div className={styles.__} ref={ref}>
         <div className={styles.__header}>
@@ -38,7 +29,7 @@ export const AnswerKey = memo(forwardRef<HTMLDivElement, AnswerKeyProps>(({ ques
                         <p>{(index + 1)}. Soru</p>
                         <div className={styles.__option__container}>
                             {Object.keys(AnswerType).map(item => {
-                                return <div key={`answer-${item}-of-index`} className={`${styles.__option} ${correctAnswerCheck(item as AnswerType, index)}`}>{item}</div>
+                                return <AnswerOption key={`answer-${item}-of-index`} item={item as AnswerType} index={index} />
                             })}
                         </div>
                     </div>

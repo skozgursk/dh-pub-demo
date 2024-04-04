@@ -3,19 +3,20 @@ import { IconButton } from "../";
 import IconButtonProps from "../iconButton/IconButtonProps";
 import SideMenuButtonProps from "./SideMenuButtonProps";
 import styles from "./sideMenuButton.module.scss";
+import { useCallback } from 'react';
 
 const sideMenuButtonHOC = (WrappedComponent: React.ForwardRefExoticComponent<IconButtonProps & React.RefAttributes<HTMLButtonElement>>) => {
     return (props: SideMenuButtonProps) => {
         const location = useLocation();
         const navigate = useNavigate()
 
-        const handleClick = (href?: string) => {
+        const handleClick = useCallback((href?: string) => {
             if (href) {
                 navigate(href)
             } else if (props.onClick) {
                 props.onClick()
             }
-        }
+        }, [navigate, props])
 
         const checkActive = (href?: string) => {
             if (href) {
@@ -23,6 +24,7 @@ const sideMenuButtonHOC = (WrappedComponent: React.ForwardRefExoticComponent<Ico
             }
             return false
         }
+        
         return <>
             <WrappedComponent
                 className={`${styles.__} ${(checkActive(props.href)) ? styles.__active : ''} `}

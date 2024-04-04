@@ -1,10 +1,10 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useCallback, useEffect, useState } from "react";
 import ToggleProps from "./ToggleProps";
 import styles from "./toggle.module.scss";
 
 export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(({ label, value, onChange }, ref) => {
     const [defaultValue, setDefaultValue] = useState(value)
-    const toggleDefault = () => setDefaultValue(!defaultValue)
+    const toggleDefault = useCallback(() => setDefaultValue(!defaultValue), [defaultValue])
 
     useEffect(() => {
         onChange(defaultValue)

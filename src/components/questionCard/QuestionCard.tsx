@@ -1,4 +1,4 @@
-import { forwardRef, memo, useEffect, useState } from "react";
+import { forwardRef, memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IconButton } from "../";
 import { Alert, Brush, CheckCirclePassive, ZoomIn, ZoomOut } from "../../assets";
@@ -13,26 +13,27 @@ export const QuestionCard = memo(forwardRef<HTMLDivElement, QuestionCardProps>((
 
     const dispatch = useDispatch()
 
-    const handleClear = () => {
+    const handleClear = useCallback(() => {
         console.log('clear')
-    }
+    }, [])
 
-    const handleZoomIn = () => {
+    const handleZoomIn = useCallback(() => {
         console.log('clear')
-    }
+    }, [])
 
-    const handleZoomOut = () => {
+    const handleZoomOut = useCallback(() => {
         console.log('clear')
-    }
+    }, [])
 
-    const handleReport = () => {
+    const handleReport = useCallback(() => {
         console.log('clear')
-    }
+    }, [])
 
-    const handleAnswer = (answer: AnswerType) => {
+
+    const handleAnswer = useCallback((answer: AnswerType) => {
         setAnswerStatus(answer === question?.answer ? AnswerStatus.Correct : AnswerStatus.Wrong)
         dispatch(add({ order: question.order, correctAnswer: question.answer, userAnswer: answer }))
-    }
+    }, [dispatch, question.answer, question.order])
 
     useEffect(() => {
         if (!answers.some(item => item.order === question.order)) {
@@ -43,6 +44,8 @@ export const QuestionCard = memo(forwardRef<HTMLDivElement, QuestionCardProps>((
         }
     }, [question])
 
+
+    //Todo create new component for this
     const rightAnswerCalculator = (order: AnswerType) => {
         const userAnswer = answers.find(item => item.order === question.order)?.userAnswer
 
@@ -81,6 +84,5 @@ export const QuestionCard = memo(forwardRef<HTMLDivElement, QuestionCardProps>((
                 </div>
             })}
         </div>
-
     </div>
 }));

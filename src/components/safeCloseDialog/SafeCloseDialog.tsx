@@ -1,17 +1,19 @@
-import { forwardRef, memo, useImperativeHandle, useRef } from "react";
+import { forwardRef, memo, useCallback, useImperativeHandle, useRef } from "react";
 import { AlertCircle, Close } from "../../assets";
 import { IconButton } from "../";
 import SafeCloseDialogProps from "./SafeCloseDialogProps";
 import styles from "./safeCloseDialog.module.scss";
 
 export const SafeCloseDialog = memo(forwardRef<HTMLDialogElement, SafeCloseDialogProps>(({ title, text, actions, onSubmit }, ref) => {
-    const handleClose = () => {
-        localRef.current?.close()
-    }
+
 
     const localRef = useRef<HTMLDialogElement>(null);
 
     useImperativeHandle(ref, () => localRef.current!, [localRef]);
+
+    const handleClose = useCallback(() => {
+        localRef.current?.close()
+    }, [])
 
     return <dialog className={styles.__} ref={localRef}>
         <div className={styles.__container}>
