@@ -4,8 +4,10 @@ import styles from "./questionCard.module.scss"
 import { Alert, Brush, CheckCirclePassive, ZoomIn, ZoomOut } from "../../assets";
 import Loading from "../loading/Loading";
 import IconButton from "../iconButton/IconButton";
+import SafeCloseDialog from "../safeCloseDialog/SafeCloseDialog";
 
 export const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(({ question }, ref) => {
+
 
 
     const handleClear = (e: any) => {
@@ -25,6 +27,7 @@ export const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(({ que
     }
 
     return <div className={styles.__} ref={ref}>
+
         {question ? <>
             <div className={styles.__header}>
                 <div className={styles.__header__tag}>Soru: {question.chapter} #{question.order}</div>
@@ -43,6 +46,7 @@ export const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(({ que
                         <CheckCirclePassive className={styles.__answer__} />
                         <p className={styles.__answer__option}>{`${item.order})`}</p>
                         <p dangerouslySetInnerHTML={{ __html: item.text }}></p>
+                        <div className={styles.__answer__actions}><button>Cevapla</button></div>
                     </div>
                 })}
             </div>

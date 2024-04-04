@@ -25,16 +25,18 @@ export const AnswerKey = forwardRef<HTMLDivElement, AnswerKeyProps>(({ answers, 
             </div>
         </div>
         <div className={styles.__answers}>
-            {Array.from(Array(15), (answer, index) => {
-                return <div className={`${styles.__answer} ${index === answers.length - 1 ? styles['__answer--active'] : ''} `}>
-                    <p>{(index + 1)}. Soru</p>
-                    <div className={styles.__option__container}>
-                        {Object.keys(AnswerType).map(item => {
-                            return <div className={`${styles.__option} ${correctAnswerCheck(item, index)}`}>{item}</div>
-                        })}
+            <div className={styles.__answers__container}>
+                {Array.from(Array(15), (answer, index) => {
+                    return <div className={`${styles.__answer} ${index === answers.length - 1 ? styles['__answer--active'] : ''} `}>
+                        <p>{(index + 1)}. Soru</p>
+                        <div className={styles.__option__container}>
+                            {Object.keys(AnswerType).map(item => {
+                                return <div className={`${styles.__option} ${correctAnswerCheck(item, index)}`}>{item}</div>
+                            })}
+                        </div>
                     </div>
-                </div>
-            })}
+                })}
+            </div>
         </div>
 
     </div>

@@ -1,1 +1,55 @@
-.__{}
+@import '../../scss//abstracts/mixins';
+
+.__ {
+    border: none;
+    border-radius: 15px;
+    width: 440px;
+
+    &container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding: 50px 30px 20px 30px;
+        box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    &close {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        background-color: #ffffff;
+    }
+
+    &actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: space-between;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 21.86px;
+        text-align: center;
+
+        button {
+            width: 180px;
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 21.86px;
+            text-align: center;
+            @include default-button();
+
+        }
+
+        &__submit {
+            background: linear-gradient(#F85050, #DE4747);
+            color: #ffffff;
+
+        }
+    }
+
+
+
+}

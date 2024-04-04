@@ -1,10 +1,12 @@
-.__ {
+@import '../../scss//abstracts/mixins';
 
-    padding: 18px 15px;
+.__ {
+    padding: 18px 5px 18px 15px;
     background-color: #ffffff;
     border-radius: 10px;
     height: calc(100dvh - 200px);
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
 
     &answer {
         background-color: #03A9F121;
@@ -15,6 +17,7 @@
         height: 60px;
         padding: 5px 8px;
         box-sizing: border-box;
+        
 
         &--active {
             background-color: #03A9F180;
@@ -56,6 +59,10 @@
 
     &answers {
         margin-top: 18px;
+        @include apply-scroll();
+        overflow: auto;
+        padding-right: 10px;
+        flex: 1;
     }
 
     &header {
