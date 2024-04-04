@@ -11,7 +11,7 @@ export const SideMenu = memo(forwardRef<HTMLDivElement>((_, ref) => {
         return <>
             {pages.map(page => {
                 if (!page.children && page.icon) {
-                    return <SideMenuButton key={`page-${page.id}`} href={`${currentPath}${page.path}`} icon={page.icon} ariaLabel={page.title} />
+                    return <SideMenuButton key={`page-${page.id}`} href={`${currentPath}/${page.path}`} icon={page.icon} ariaLabel={page.title} />
                 } else if (page.children) {
                     return <div key={`group-${page.id}`} className={styles.__group}>
                         {renderMenu(page.children, page.path ?? '')}

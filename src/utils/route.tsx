@@ -2,7 +2,7 @@ import { ComponentType } from "react";
 import { NonIndexRouteObject, createBrowserRouter } from "react-router-dom";
 import { AnaSayfa, CozucuApp, DenemeSinavlari, Dersler, Istatistik, OlcmeDegerlendirme, RehberlikVideolari, SoruBankasi } from "../assets";
 import { Layout } from "../components";
-import { Home, Question } from "./../pages";
+import { ErrorPage, Home, Question } from "./../pages";
 
 export interface MenuItem extends NonIndexRouteObject {
   icon?: ComponentType
@@ -19,7 +19,7 @@ export const MenuPages: Array<MenuItem> = [
     children: [
       {
         id: 'question',
-        path: '/',
+        path: '',
         icon: AnaSayfa,
         title: 'Ana Sayfa',
         Component: Question,
@@ -70,26 +70,26 @@ export const MenuPages: Array<MenuItem> = [
   },
   {
     id: "apps",
-    path: "/apps",
+    path: "apps",
     Component: Layout,
     title: '',
     children: [
       {
         id: 'CozucuApp',
-        path: 'CozucuApp/:id',
+        path: 'CozucuApp',
         icon: CozucuApp,
         title: 'Ana Sayfa',
       },
       {
         id: 'SimdiAnladimApp',
-        path: 'SimdiAnladimApp/:id',
+        path: 'SimdiAnladimApp',
         icon: CozucuApp, //icon svg is broken replaced with this
         title: 'Ana Sayfa',
         Component: Question,
       },
       {
         id: 'KocumYanimdaApp',
-        path: 'KocumYanimdaApp/:id',//icon svg is broken replaced with this
+        path: 'KocumYanimdaApp',//icon svg is broken replaced with this
         icon: CozucuApp,
         title: 'Ana Sayfa',
         Component: Question,
@@ -103,6 +103,7 @@ export const router = createBrowserRouter([
     id: "root",
     path: "/",
     Component: Layout,
+    errorElement: <ErrorPage />,
     children: [
       {
         id: 'home',

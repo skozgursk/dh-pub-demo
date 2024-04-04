@@ -1,0 +1,45 @@
+$sizes: (
+    'xxl': '24px',
+    'xl': '20px',
+    'lg': '16px',
+    'base': '14px',
+    'sm': '12px',
+    'xs': '10px',
+);
+
+$weights: (
+    'light': 300,
+    'regular': 400,
+    'medium': 500,
+    'semibold': 600,
+    'bold': 700
+);
+
+$colors: (
+    'red': red,
+    'blue': blue,
+    'black': black,
+    'white': white,
+    'green': green
+);
+
+
+.__ {
+    @each $name, $value in $weights {
+        &#{$name} {
+            font-weight: #{$value};
+        }
+    }
+
+    @each $name, $value in $colors {
+        &#{$name} {
+            color: #{$value};
+        }
+    }
+
+    @each $name, $value in $sizes {
+        &#{$name} {
+            font-size: #{$value};
+        }
+    }
+}
