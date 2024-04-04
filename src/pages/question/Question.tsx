@@ -1,12 +1,12 @@
-import { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from "react";
-import styles from "./question.module.scss"
-import { Link, useParams } from "react-router-dom";
-import { AnswerKey, QuestionCard, SafeCloseDialog, Toggle } from "../../components";
-import { apiInstance, getQuestions, useHTTP } from "../../utils";
-import { QuestionModel } from "../../models";
-import { AnswerType } from "../../models/answerType"
-import { ArrowLeft, ChevronLeft, ChevronRight, Power } from "../../assets";
+import { useRef, useState } from "react";
 import { useQuery } from "react-query";
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, ChevronLeft, ChevronRight, Power } from "../../assets";
+import { AnswerKey, QuestionCard, SafeCloseDialog, Toggle } from "../../components";
+import { QuestionModel } from "../../models";
+import { AnswerType } from "../../models/answerType";
+import { getQuestions } from "../../utils";
+import styles from "./question.module.scss";
 
 export const Question = () => {
     const { id } = useParams()

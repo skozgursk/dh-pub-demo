@@ -1,8 +1,8 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
-import SafeCloseDialogProps from "./SafeCloseDialogProps";
-import styles from "./safeCloseDialog.module.scss"
-import IconButton from "../iconButton/IconButton";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import { AlertCircle, Close } from "../../assets";
+import IconButton from "../iconButton/IconButton";
+import SafeCloseDialogProps from "./SafeCloseDialogProps";
+import styles from "./safeCloseDialog.module.scss";
 
 export const SafeCloseDialog = forwardRef<HTMLDialogElement, SafeCloseDialogProps>(({ title, text, actions, onSubmit }, ref) => {
     const handleClose = () => {

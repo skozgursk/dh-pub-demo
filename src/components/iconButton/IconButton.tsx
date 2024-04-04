@@ -1,6 +1,6 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import { forwardRef } from "react";
 import IconButtonProps from "./IconButtonProps";
-import styles from "./iconButton.module.scss"
+import styles from "./iconButton.module.scss";
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>((props, ref) => {
 

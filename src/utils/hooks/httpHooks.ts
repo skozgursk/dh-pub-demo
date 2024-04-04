@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { HttpHookRequestOptions } from './httpHookRequestOptions';
 import { HttpHookResponse } from './httpHookResponse';
 

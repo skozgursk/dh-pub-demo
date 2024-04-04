@@ -1,6 +1,6 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import { forwardRef } from "react";
 import LoadingProps from "./LoadingProps";
-import styles from "./loading.module.scss"
+import styles from "./loading.module.scss";
 
 export const Loading = forwardRef<HTMLDivElement, LoadingProps>((props, ref) => {
 

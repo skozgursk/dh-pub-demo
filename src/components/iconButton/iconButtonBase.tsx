@@ -1,4 +1,4 @@
-import { ComponentType, FC, ReactNode } from "react"
+import { ComponentType, ReactNode } from "react"
 
 export const IconButtonBase = (ChildComponent: ComponentType<{ children: ReactNode }>) => {
 

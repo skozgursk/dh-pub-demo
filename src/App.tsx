@@ -1,9 +1,9 @@
-import './scss/App.scss';
-import { RouterProvider } from 'react-router-dom';
-import { router } from './utils';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
-import store from './store'
+import { RouterProvider } from 'react-router-dom';
+import './scss/App.scss';
+import store from './store';
+import { router } from './utils';
 
 const queryClient = new QueryClient();
 
