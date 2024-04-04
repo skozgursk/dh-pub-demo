@@ -43,6 +43,8 @@
         width: 100%;
         box-sizing: border-box;
 
+
+
         &__actions {
             flex: 1;
         }
@@ -50,6 +52,34 @@
         &:hover {
             button {
                 display: block;
+            }
+        }
+
+        &--correct {
+            background-color: green;
+
+            &:hover {
+                button {
+                    display: none;
+                }
+            }
+        }
+
+        &--answered {
+            &:hover {
+                button {
+                    display: none;
+                }
+            }
+        }
+
+        &--wrong {
+            background-color: red;
+
+            &:hover {
+                button {
+                    display: none;
+                }
             }
         }
 

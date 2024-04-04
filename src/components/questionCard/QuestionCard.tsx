@@ -1,33 +1,66 @@
-import { EventHandler, forwardRef, useEffect, useImperativeHandle, useRef } from "react";
-import QuestionCardProps from "./QuestionCardProps";
-import styles from "./questionCard.module.scss"
+import { forwardRef, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Alert, Brush, CheckCirclePassive, ZoomIn, ZoomOut } from "../../assets";
-import Loading from "../loading/Loading";
+import { AnswerType, StateModel } from "../../models";
+import { add } from "../../store/quiz/quizSlice";
 import IconButton from "../iconButton/IconButton";
-import SafeCloseDialog from "../safeCloseDialog/SafeCloseDialog";
+import Loading from "../loading/Loading";
+import QuestionCardProps, { AnswerStatus } from "./QuestionCardProps";
+import styles from "./questionCard.module.scss";
 
 export const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(({ question }, ref) => {
+    const [answerStatus, setAnswerStatus] = useState(AnswerStatus.None)
+    const answers = useSelector((state: StateModel) => state?.quiz?.value)
 
+    const dispatch = useDispatch()
 
-
-    const handleClear = (e: any) => {
+    const handleClear = () => {
         console.log('clear')
     }
 
-    const handleZoomIn = (e: any) => {
+    const handleZoomIn = () => {
         console.log('clear')
     }
 
-    const handleZoomOut = (e: any) => {
+    const handleZoomOut = () => {
         console.log('clear')
     }
 
-    const handleReport = (e: any) => {
+    const handleReport = () => {
         console.log('clear')
+    }
+
+    const handleAnswer = (answer: AnswerType) => {
+        setAnswerStatus(answer === question?.answer ? AnswerStatus.Correct : AnswerStatus.Wrong)
+        dispatch(add({ order: question.order, correctAnswer: question.answer, userAnswer: answer }))
+    }
+
+    useEffect(() => {
+        if (!answers.some(item => item.order === question.order)) {
+            setAnswerStatus(AnswerStatus.None)
+        } else {
+            const answer = answers.find(item => item.order === question.order)?.userAnswer
+            setAnswerStatus(answer === question?.answer ? AnswerStatus.Correct : AnswerStatus.Wrong)
+        }
+    }, [question])
+
+    const rightAnswerCalculater = (order: AnswerType) => {
+        const userAnswer = answers.find(item => item.order === question.order)?.userAnswer
+
+        if (order === userAnswer && answerStatus === AnswerStatus.Correct) {
+            return styles['__answer--correct']
+        } else if (order === userAnswer && answerStatus === AnswerStatus.Wrong) {
+            return styles['__answer--wrong']
+        } else if (answerStatus !== AnswerStatus.None && order === question?.answer) {
+            return styles['__answer--correct']
+        } else if (answerStatus !== AnswerStatus.None) {
+            return styles['__answer--answered']
+        }
+
+        return ''
     }
 
     return <div className={styles.__} ref={ref}>
-
         {question ? <>
             <div className={styles.__header}>
                 <div className={styles.__header__tag}>Soru: {question.chapter} #{question.order}</div>
@@ -42,11 +75,11 @@ export const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(({ que
             <p className={styles.__question}><b>{question.question}</b></p>
             <div className={styles.__answer__container}>
                 {question.answers.map(item => {
-                    return <div className={styles.__answer}>
+                    return <div className={`${styles.__answer} ${rightAnswerCalculater(item.order)}`}>
                         <CheckCirclePassive className={styles.__answer__} />
                         <p className={styles.__answer__option}>{`${item.order})`}</p>
                         <p dangerouslySetInnerHTML={{ __html: item.text }}></p>
-                        <div className={styles.__answer__actions}><button>Cevapla</button></div>
+                        <div className={styles.__answer__actions}><button onClick={() => { handleAnswer(item.order) }}>Cevapla</button></div>
                     </div>
                 })}
             </div>

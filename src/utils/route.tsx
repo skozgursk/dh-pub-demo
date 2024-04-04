@@ -1,17 +1,14 @@
-import { NonIndexRouteObject, createBrowserRouter } from "react-router-dom";
-import { Layout } from "../components";
-import { Question } from "./../pages";
 import { ComponentType } from "react";
-import { AnaSayfa, CozucuApp, DenemeSinavlari, Dersler, Istatistik, KocumYanimdaApp, Logo, OlcmeDegerlendirme, RehberlikVideolari, SimdiAnladimApp, SoruBankasi } from "../assets";
-
-
+import { NonIndexRouteObject, createBrowserRouter } from "react-router-dom";
+import { AnaSayfa, CozucuApp, DenemeSinavlari, Dersler, Istatistik, OlcmeDegerlendirme, RehberlikVideolari, SoruBankasi } from "../assets";
+import { Layout } from "../components";
+import { Home, Question } from "./../pages";
 
 export interface MenuItem extends NonIndexRouteObject {
   icon?: ComponentType
   title: string,
   children?: Array<MenuItem>
 }
-
 
 export const MenuPages: Array<MenuItem> = [
   {
@@ -29,7 +26,7 @@ export const MenuPages: Array<MenuItem> = [
       },
       {
         id: 'dersler',
-        path: 'Dersler',
+        path: 'question/1',
         icon: Dersler,
         title: 'Ana Sayfa',
         Component: Question,
@@ -79,21 +76,20 @@ export const MenuPages: Array<MenuItem> = [
     children: [
       {
         id: 'CozucuApp',
-        path: '/CozucuApp/:id',
+        path: 'CozucuApp/:id',
         icon: CozucuApp,
         title: 'Ana Sayfa',
-        Component: Question,
       },
       {
         id: 'SimdiAnladimApp',
-        path: '/SimdiAnladimApp/:id',
+        path: 'SimdiAnladimApp/:id',
         icon: CozucuApp, //icon svg is broken replaced with this
         title: 'Ana Sayfa',
         Component: Question,
       },
       {
         id: 'KocumYanimdaApp',
-        path: '/KocumYanimdaApp/:id',//icon svg is broken replaced with this
+        path: 'KocumYanimdaApp/:id',//icon svg is broken replaced with this
         icon: CozucuApp,
         title: 'Ana Sayfa',
         Component: Question,
@@ -102,17 +98,22 @@ export const MenuPages: Array<MenuItem> = [
   }
 ]
 
-
 export const router = createBrowserRouter([
   {
-    id: "home",
+    id: "root",
     path: "/",
     Component: Layout,
     children: [
       {
+        id: 'home',
+        path: '/',
+        Component: Home,
+      },
+      {
         id: 'question',
-        path: '/:id',
+        path: 'question/:id',
         Component: Question,
-      },]
+      },
+    ]
   }
 ]);

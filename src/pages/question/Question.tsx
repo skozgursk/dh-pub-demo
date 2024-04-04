@@ -1,22 +1,23 @@
 import { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from "react";
 import styles from "./question.module.scss"
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AnswerKey, QuestionCard, SafeCloseDialog, Toggle } from "../../components";
-import { apiInstance, useHTTP } from "../../utils";
+import { apiInstance, getQuestions, useHTTP } from "../../utils";
 import { QuestionModel } from "../../models";
 import { AnswerType } from "../../models/answerType"
 import { ArrowLeft, ChevronLeft, ChevronRight, Power } from "../../assets";
+import { useQuery } from "react-query";
 
 export const Question = () => {
     const { id } = useParams()
-    const { error, data: questions, loading, get } = useHTTP<Array<QuestionModel>>(apiInstance)
+    //const { error, data: questions, loading, get } = useHTTP<Array<QuestionModel>>(apiInstance)
+    const { data: questions, isLoading, error } = useQuery<Array<QuestionModel>, Error>('questions.json', getQuestions);
+
     const [isAnswersShown, setIsAnswersShown] = useState(true)
 
-    const dialogRef = useRef<HTMLDialogElement>(null)
+    const [answerList, setAnswerList] = useState<Array<AnswerType>>([])
 
-    useLayoutEffect(() => {
-        get('questions,json')
-    }, [])
+    const dialogRef = useRef<HTMLDialogElement>(null)
 
     return <div className={styles.__}>
         <SafeCloseDialog
@@ -24,7 +25,7 @@ export const Question = () => {
             title="Ayrılmak istediğine emin misin?"
             text="Testi yarıda bırakıyorsun. İstediğin zaman kaldığın sorudan devam edebilirsin."
             actions={{ submit: 'Testten Çık', cancel: 'Vazgeç' }}
-            onSubmit={() => {console.log('')}}
+            onSubmit={() => { console.log('ff') }}
         />
         <div className={styles.__header}>
             <div className={styles.__header__question}>
@@ -38,18 +39,22 @@ export const Question = () => {
         </div>
         <div className={styles.__content}>
             <div className={styles.__question}>
-                <QuestionCard question={questions ? questions[0] : undefined} />
+
+                {questions?.find(item => item.order === parseInt(id ?? '0')) &&
+                    <QuestionCard question={questions?.find(item => item.order === parseInt(id ?? '0')) as QuestionModel} />
+                }
+
                 <div className={styles.__question__actions}>
-                    <button>
+                    <Link to={`/question/${(parseInt(id ?? '0') - 1) > 0 ? (parseInt(id ?? '0') - 1) : 1}`}>
                         <ChevronLeft /> Önceki Soru
-                    </button>
-                    <button>
+                    </Link>
+                    <Link to={`/question/${(parseInt(id ?? '0') + 1) <= (questions?.length ?? 0) ? (parseInt(id ?? '0') + 1) : questions?.length}`}>
                         Sonraki Soru <ChevronRight />
-                    </button>
+                    </Link>
                 </div>
             </div>
             <div className={`${styles.__answers} ${!isAnswersShown ? styles['__answers--hidden'] : ''}`}>
-                <AnswerKey title="Türkçe" answers={[AnswerType.A, AnswerType.B, AnswerType.C]} />
+                <AnswerKey title="Türkçe" questionCount={questions?.length ?? 0} />
             </div>
         </div>
     </div>

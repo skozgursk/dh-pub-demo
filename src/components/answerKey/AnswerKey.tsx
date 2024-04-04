@@ -1,13 +1,20 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
-import AnswerKeyProps from "./AnswerKeyProps";
-import styles from "./answerKey.module.scss"
-import { AnswerType } from "../../models/answerType";
+import { forwardRef } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { Ders } from "../../assets";
+import { StateModel } from "../../models";
+import { AnswerType } from "../../models/answerType";
+import AnswerKeyProps from "./AnswerKeyProps";
+import styles from "./answerKey.module.scss";
 
-export const AnswerKey = forwardRef<HTMLDivElement, AnswerKeyProps>(({ answers, title }, ref) => {
+export const AnswerKey = forwardRef<HTMLDivElement, AnswerKeyProps>(({ questionCount, title }, ref) => {
+    const answers = useSelector((state: StateModel) => state?.quiz?.value)
+    const { id } = useParams()
 
-    const correctAnswerCheck = (option: string, index: number) => {
-        if (index < answers.length && option === answers[index]) {
+    const correctAnswerCheck = (option: AnswerType, index: number) => {
+        const answer = answers.find(item => item.order === (index + 1))
+
+        if (answer && option === answer.correctAnswer) {
             return styles['__option--correct']
         }
 
@@ -26,12 +33,12 @@ export const AnswerKey = forwardRef<HTMLDivElement, AnswerKeyProps>(({ answers, 
         </div>
         <div className={styles.__answers}>
             <div className={styles.__answers__container}>
-                {Array.from(Array(15), (answer, index) => {
-                    return <div className={`${styles.__answer} ${index === answers.length - 1 ? styles['__answer--active'] : ''} `}>
+                {Array.from(Array(questionCount), (answer, index) => {
+                    return <div className={`${styles.__answer} ${index === parseInt(id ?? "0") - 1 ? styles['__answer--active'] : ''} `}>
                         <p>{(index + 1)}. Soru</p>
                         <div className={styles.__option__container}>
                             {Object.keys(AnswerType).map(item => {
-                                return <div className={`${styles.__option} ${correctAnswerCheck(item, index)}`}>{item}</div>
+                                return <div className={`${styles.__option} ${correctAnswerCheck(item as AnswerType, index)}`}>{item}</div>
                             })}
                         </div>
                     </div>

@@ -1,12 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
 import './scss/App.scss';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './utils';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'react-redux';
+import store from './store'
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <RouterProvider router={router} fallbackElement={<>aa</>} />
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} fallbackElement={<>aa</>} />
+      </QueryClientProvider>
+    </Provider>
+
   );
 }
 
