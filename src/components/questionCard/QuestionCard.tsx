@@ -75,7 +75,7 @@ export const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(({ que
             <p className={styles.__question}><b>{question.question}</b></p>
             <div className={styles.__answer__container}>
                 {question.answers.map(item => {
-                    return <div className={`${styles.__answer} ${rightAnswerCalculater(item.order)}`}>
+                    return <div key={`question-${question.order}-answer-${item.order}`} className={`${styles.__answer} ${rightAnswerCalculater(item.order)}`}>
                         <CheckCirclePassive className={styles.__answer__} />
                         <p className={styles.__answer__option}>{`${item.order})`}</p>
                         <p dangerouslySetInnerHTML={{ __html: item.text }}></p>
@@ -83,7 +83,7 @@ export const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(({ que
                     </div>
                 })}
             </div>
-        </> : <Loading />}
+        </> : <Loading isOpen={true} />}
 
     </div>
 });

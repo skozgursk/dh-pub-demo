@@ -34,11 +34,11 @@ export const AnswerKey = forwardRef<HTMLDivElement, AnswerKeyProps>(({ questionC
         <div className={styles.__answers}>
             <div className={styles.__answers__container}>
                 {Array.from(Array(questionCount), (answer, index) => {
-                    return <div className={`${styles.__answer} ${index === parseInt(id ?? "0") - 1 ? styles['__answer--active'] : ''} `}>
+                    return <div key={`answer-${index}`} className={`${styles.__answer} ${index === parseInt(id ?? "0") - 1 ? styles['__answer--active'] : ''} `}>
                         <p>{(index + 1)}. Soru</p>
                         <div className={styles.__option__container}>
                             {Object.keys(AnswerType).map(item => {
-                                return <div className={`${styles.__option} ${correctAnswerCheck(item as AnswerType, index)}`}>{item}</div>
+                                return <div key={`answer-${item}-of-index`} className={`${styles.__option} ${correctAnswerCheck(item as AnswerType, index)}`}>{item}</div>
                             })}
                         </div>
                     </div>

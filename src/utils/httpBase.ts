@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
-const storeAPI = '/api'
+const storeAPI = 'http://localhost:5000/api'
 
 export const apiInstance: AxiosInstance = axios.create({
     baseURL: storeAPI
@@ -21,11 +21,10 @@ apiInstance.interceptors.response.use(
         if (response.status === 200) {
             return response.data
         } else {
-            throw 'An Error'
+            throw Error('Something Went Very Bad')
         }
     },
-    (error: AxiosError<any>) => {
-        console.error(error)
-        return null
+    (error: AxiosError) => {
+        throw Error('Something Went Very Bad')
     }
 )

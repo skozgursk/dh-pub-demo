@@ -2,24 +2,24 @@ import { useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight, Power } from "../../assets";
-import { AnswerKey, QuestionCard, SafeCloseDialog, Toggle } from "../../components";
+import { AnswerKey, Loading, QuestionCard, SafeCloseDialog, Toggle } from "../../components";
 import { QuestionModel } from "../../models";
-import { AnswerType } from "../../models/answerType";
 import { getQuestions } from "../../utils";
 import styles from "./question.module.scss";
 
 export const Question = () => {
     const { id } = useParams()
-    //const { error, data: questions, loading, get } = useHTTP<Array<QuestionModel>>(apiInstance)
-    const { data: questions, isLoading, error } = useQuery<Array<QuestionModel>, Error>('questions.json', getQuestions);
+
+    const { data: questions, isLoading, error } = useQuery<Array<QuestionModel>, Error>('questions', getQuestions);
 
     const [isAnswersShown, setIsAnswersShown] = useState(true)
-
-    const [answerList, setAnswerList] = useState<Array<AnswerType>>([])
 
     const dialogRef = useRef<HTMLDialogElement>(null)
 
     return <div className={styles.__}>
+        {isLoading.toString()}
+        {error?.toString()}
+        <Loading isOpen={isLoading} />
         <SafeCloseDialog
             ref={dialogRef}
             title="Ayrılmak istediğine emin misin?"

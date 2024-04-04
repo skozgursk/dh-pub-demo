@@ -1,1 +1,3 @@
-export default interface LoadingProps extends Partial<HTMLElement> {}
+export default interface LoadingProps {
+    isOpen: boolean
+}
